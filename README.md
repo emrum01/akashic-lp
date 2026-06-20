@@ -4,8 +4,8 @@
 
 ## 公開URL
 
-- ハブ: https://emrum01.github.io/akashic-lp/
-- ブックカフェからの脱出: https://emrum01.github.io/akashic-lp/bookcafe/
+- ハブ: https://lp.escape-safari.com/
+- ブックカフェからの脱出: https://lp.escape-safari.com/bookcafe/
 
 ## 構成の規約
 
@@ -31,3 +31,4 @@ akashic-lp/
 ## Pages 設定
 
 ブランチ `main` / パス `/`（root）から配信。
+カスタムドメインは `CNAME` ファイルで `lp.escape-safari.com` に設定している。
