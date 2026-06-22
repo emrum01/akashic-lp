@@ -72,6 +72,18 @@ var SAFARI_TRACK = {
     cta: '',
     landing_path: ''
   },
+  // リファラー（参照元ドメイン）からの自動判定マップ。明示パラメータが無いときのみ使用。
+  // ここに { match:['媒体ドメイン'], source:'...', medium:'...' } を追記すれば判定対象が増える。
+  referrerMap: [
+    { match: ['instagram.com'],                    source: 'instagram', medium: 'social' },
+    { match: ['x.com','twitter.com','t.co'],       source: 'x',         medium: 'social' },
+    { match: ['line.me','lin.ee','liff.line.me'],  source: 'line',      medium: 'social' },
+    { match: ['threads.net','threads.com'],        source: 'threads',   medium: 'social' },
+    { match: ['google.'],                          source: 'google',    medium: 'organic' }
+    // 謎解きプラットフォーム（ドメイン確定後にここへ追記）:
+    // { match: ['<nazohiroba-domain>'], source: 'nazohiroba', medium: 'platform' },
+    // { match: ['<nazolog-domain>'],    source: 'nazolog',    medium: 'platform' }
+  ],
   webnazo: { enabled: false } // 将来のWeb謎計測拡張ポイント（今は無効）
 };
 
@@ -98,6 +110,61 @@ var SAFARI_TRACK = {
   var params = parseParams();
   var hasParam = !!(params.source || params.medium || params.campaign || params.ref);
 
+  // --- 1.5) リファラー自動判定（明示パラメータが無いときの補完） ---
+  function detectFromReferrer() {
+    var ref = '';
+    try { ref = document.referrer || ''; } catch (e) { ref = ''; }
+    if (!ref) return null; // リファラー無し → direct扱いへ
+    var host = '';
+    try { host = new URL(ref).hostname.toLowerCase().replace(/^www\./, ''); } catch (e) { return null; }
+    if (!host) return null;
+    // 自サイトからの内部遷移は無視
+    if (host === location.hostname.toLowerCase().replace(/^www\./, '')) return null;
+    // referrerMap を走査（部分一致：完全一致 / '.'+m で終わる / m を含む）
+    var map = cfg.referrerMap || [];
+    for (var i = 0; i < map.length; i++) {
+      var rule = map[i], ms = rule.match || [];
+      for (var j = 0; j < ms.length; j++) {
+        var m = String(ms[j]).toLowerCase();
+        if (host === m || host.indexOf('.' + m) === host.length - m.length - 1 || host.indexOf(m) !== -1) {
+          return { source: rule.source, medium: rule.medium };
+        }
+      }
+    }
+    // どのルールにも一致しない外部リファラー → hostnameそのままで取りこぼさず記録
+    return { source: host, medium: 'referral' };
+  }
+  var referrerInfo = (params.source || params.medium) ? null : detectFromReferrer();
+
+  // --- 1.6) SNSアプリ内ブラウザ判定（User-Agentから）。referrerが空になりがちなWebViewでearnedを捕捉 ---
+  // UA文字列（小文字）に対する部分一致ルール。source名は referrerMap と整合（instagram/x/line/threads）。
+  var clientAppMap = [
+    { match: ['instagram'],        app: 'instagram' },
+    { match: ['fban', 'fbav'],     app: 'facebook' },
+    { match: ['line/', ' line'],   app: 'line' },
+    { match: ['threads'],          app: 'threads' },
+    { match: ['twitter'],          app: 'x' },
+    { match: ['tiktok'],           app: 'tiktok' }
+  ];
+  function detectClientApp() {
+    var ua = '';
+    try { ua = (navigator.userAgent || '').toLowerCase(); } catch (e) { return 'unknown'; }
+    if (!ua) return 'unknown';
+    for (var i = 0; i < clientAppMap.length; i++) {
+      var rule = clientAppMap[i], ms = rule.match || [];
+      for (var j = 0; j < ms.length; j++) {
+        if (ua.indexOf(ms[j]) !== -1) return rule.app;
+      }
+    }
+    return 'browser'; // 通常のSafari/Chrome等
+  }
+
+  // effective source/medium 決定：明示パラメータ最優先 → リファラー判定 → direct
+  var effSource = params.source || (referrerInfo && referrerInfo.source) || '';
+  var effMedium = params.medium || (referrerInfo && referrerInfo.medium) || '';
+  // 流入情報が1つでも得られたか（明示param または リファラー判定）
+  var hasAttribution = hasParam || !!referrerInfo;
+
   // --- 2) localStorage アトリビューション（first/last touch） ---
   function readStore() {
     try {
@@ -108,10 +175,10 @@ var SAFARI_TRACK = {
   function writeStore(obj) {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(obj)); } catch (e) {}
   }
-  function makeTouch(src) {
+  function makeTouch(src, med) {
     return {
       source: src,
-      medium: params.medium,
+      medium: med,
       campaign: params.campaign,
       ref: params.ref,
       landing_path: location.pathname,
@@ -119,14 +186,15 @@ var SAFARI_TRACK = {
     };
   }
   var store = readStore();
-  if (hasParam) {
-    var touch = makeTouch(params.source);
+  if (hasAttribution) {
+    // 明示パラメータ または リファラー判定で流入元が得られた訪問
+    var touch = makeTouch(effSource, effMedium);
     if (!store.first_touch) store.first_touch = touch; // 初回のみ確定（以後不変）
     store.last_touch = touch;                           // 毎回上書き
     writeStore(store);
   } else if (!store.first_touch && !store.last_touch) {
     // 完全初回かつdirect：両方をdirectで記録
-    var d = makeTouch('direct');
+    var d = makeTouch('direct', '');
     store.first_touch = d;
     store.last_touch = d;
     writeStore(store);
@@ -152,7 +220,8 @@ var SAFARI_TRACK = {
     // page_viewに流入情報をuser_propertiesとして付与
     gtag('set', 'user_properties', {
       att_source: cur.source, att_medium: cur.medium, att_campaign: cur.campaign,
-      att_first_source: first.source, att_first_medium: first.medium, att_first_campaign: first.campaign
+      att_first_source: first.source, att_first_medium: first.medium, att_first_campaign: first.campaign,
+      att_client_app: detectClientApp()
     });
     gtag('config', liveId);
   }
