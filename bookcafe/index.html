@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ブックカフェからの脱出｜宮城・多賀城の実店舗探索型ルーム謎</title>
 <meta name="description" content="宮城県多賀城市のブックカフェサファリで遊べる少人数制ルーム型謎解きゲーム。実在するブックカフェを探索し、匿名掲示板風のスマホ演出と本棚・手記の手がかりをつなげて脱出を目指します。1〜4名、約60〜90分、ヒントあり。">
-<link rel="canonical" href="https://invitation.escape-safari.com/bookcafe/">
+<link rel="canonical" href="https://invite.escape-safari.com/bookcafe/">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="ブックカフェからの脱出">
 <meta property="og:title" content="ブックカフェからの脱出｜宮城・多賀城の実店舗探索型ルーム謎">
 <meta property="og:description" content="宮城県多賀城市のブックカフェサファリで遊べる少人数制ルーム型謎解きゲーム。実在するブックカフェを探索し、匿名掲示板風のスマホ演出と本棚・手記の手がかりをつなげて脱出を目指します。1〜4名、約60〜90分、ヒントあり。">
-<meta property="og:url" content="https://invitation.escape-safari.com/bookcafe/">
-<meta property="og:image" content="https://invitation.escape-safari.com/bookcafe/ogp.jpg">
+<meta property="og:url" content="https://invite.escape-safari.com/bookcafe/">
+<meta property="og:image" content="https://invite.escape-safari.com/bookcafe/ogp.jpg">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ブックカフェからの脱出｜宮城・多賀城の実店舗探索型ルーム謎">
 <meta name="twitter:description" content="宮城県多賀城市のブックカフェサファリで遊べる少人数制ルーム型謎解きゲーム。1〜4名・約60〜90分・ヒントあり・完全予約制。">
-<meta name="twitter:image" content="https://invitation.escape-safari.com/bookcafe/ogp.jpg">
+<meta name="twitter:image" content="https://invite.escape-safari.com/bookcafe/ogp.jpg">
 
 <script type="application/ld+json">
 {
@@ -30,8 +30,8 @@
       "@type": ["TouristAttraction", "Product"],
       "name": "ブックカフェからの脱出 ― 異世界カフェから出られない件 ―",
       "description": "宮城県多賀城市のブックカフェサファリで遊べる少人数制ルーム型（実店舗探索型）謎解きゲーム。本棚・手記・匿名掲示板風のスマホ演出の手がかりをつなげて脱出を目指す。",
-      "url": "https://invitation.escape-safari.com/bookcafe/",
-      "image": "https://invitation.escape-safari.com/bookcafe/ogp.jpg",
+      "url": "https://invite.escape-safari.com/bookcafe/",
+      "image": "https://invite.escape-safari.com/bookcafe/ogp.jpg",
       "touristType": "謎解き・リアル脱出ゲーム愛好者",
       "isAccessibleForFree": false,
       "offers": {
@@ -40,7 +40,7 @@
         "price": "1500",
         "priceCurrency": "JPY",
         "availability": "https://schema.org/InStock",
-        "url": "https://invitation.escape-safari.com/bookcafe/"
+        "url": "https://invite.escape-safari.com/bookcafe/"
       },
       "location": {
         "@type": "CafeOrCoffeeShop",
@@ -56,6 +56,153 @@
     }
   ]
 }
+</script>
+
+<!-- ===== 計測モジュール（流入計測・GA4・CTA配線） ===== -->
+<script>
+var SAFARI_TRACK = {
+  ga4Id: 'G-XXXXXXXXXX', // ← GA4測定ID未発行。プレースホルダのまま。本物に差し替えると自動でgtag注入される
+  formBaseUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform',
+  // Googleフォームのhidden項目 entry ID（手動取得して差し込む。空のままなら該当キーはURLに付かない＝安全）
+  formEntries: {
+    source: '',        // 例 'entry.1234567890'
+    medium: '',
+    campaign: '',
+    ref: '',
+    cta: '',
+    landing_path: ''
+  },
+  webnazo: { enabled: false } // 将来のWeb謎計測拡張ポイント（今は無効）
+};
+
+(function () {
+  var cfg = SAFARI_TRACK;
+  var STORE_KEY = 'safari_attribution';
+  var PLACEHOLDER = 'G-XXXXXXXXXX';
+
+  // --- 1) URLパラメータ解析（utm_* を正規化） ---
+  function parseParams() {
+    var q = {};
+    try {
+      var sp = new URLSearchParams(location.search);
+      var get = function (k) { return sp.get(k) || ''; };
+      q.source = get('source') || get('utm_source');
+      q.medium = get('medium') || get('utm_medium');
+      q.campaign = get('campaign') || get('utm_campaign');
+      q.ref = get('ref');
+    } catch (e) {
+      q = { source: '', medium: '', campaign: '', ref: '' };
+    }
+    return q;
+  }
+  var params = parseParams();
+  var hasParam = !!(params.source || params.medium || params.campaign || params.ref);
+
+  // --- 2) localStorage アトリビューション（first/last touch） ---
+  function readStore() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+  function writeStore(obj) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(obj)); } catch (e) {}
+  }
+  function makeTouch(src) {
+    return {
+      source: src,
+      medium: params.medium,
+      campaign: params.campaign,
+      ref: params.ref,
+      landing_path: location.pathname,
+      ts: new Date().toISOString()
+    };
+  }
+  var store = readStore();
+  if (hasParam) {
+    var touch = makeTouch(params.source);
+    if (!store.first_touch) store.first_touch = touch; // 初回のみ確定（以後不変）
+    store.last_touch = touch;                           // 毎回上書き
+    writeStore(store);
+  } else if (!store.first_touch && !store.last_touch) {
+    // 完全初回かつdirect：両方をdirectで記録
+    var d = makeTouch('direct');
+    store.first_touch = d;
+    store.last_touch = d;
+    writeStore(store);
+  }
+  // 既存のチャネル情報がある場合のdirect訪問はlast_touchを上書きしない（保持）
+
+  // 送信に使う現在の流入情報：last_touch優先→first_touch→direct
+  var cur = store.last_touch || store.first_touch || { source: 'direct', medium: '', campaign: '', ref: '', landing_path: location.pathname };
+  var first = store.first_touch || cur;
+
+  // --- 3) GA4（gtag stubは常に定義、本番IDのときのみ実注入） ---
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+
+  var liveId = (cfg.ga4Id && cfg.ga4Id !== PLACEHOLDER && cfg.ga4Id.indexOf('G-') === 0) ? cfg.ga4Id : null;
+  if (liveId) {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(liveId);
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    // page_viewに流入情報をuser_propertiesとして付与
+    gtag('set', 'user_properties', {
+      att_source: cur.source, att_medium: cur.medium, att_campaign: cur.campaign,
+      att_first_source: first.source, att_first_medium: first.medium, att_first_campaign: first.campaign
+    });
+    gtag('config', liveId);
+  }
+
+  // --- 4) CTA配線（DOMContentLoaded後） ---
+  function wireCTAs() {
+    var els = document.querySelectorAll('[data-cta]');
+    for (var i = 0; i < els.length; i++) {
+      (function (el) {
+        var ctaId = el.getAttribute('data-cta');
+        var href = el.getAttribute('href') || '';
+        var isForm = href.indexOf('docs.google.com/forms') !== -1;
+
+        // フォームCTAはロード時にプレフィル付きURLへ書き換え
+        if (isForm) {
+          var values = {
+            source: cur.source, medium: cur.medium, campaign: cur.campaign,
+            ref: cur.ref, cta: ctaId,
+            landing_path: first.landing_path || location.pathname
+          };
+          var url = cfg.formBaseUrl + '?usp=pp_url';
+          var keys = ['source', 'medium', 'campaign', 'ref', 'cta', 'landing_path'];
+          for (var k = 0; k < keys.length; k++) {
+            var key = keys[k];
+            var entry = cfg.formEntries[key];
+            var val = values[key];
+            if (entry && val) url += '&' + entry + '=' + encodeURIComponent(val);
+          }
+          el.setAttribute('href', url);
+        }
+
+        el.addEventListener('click', function () {
+          window.gtag('event', 'reservation_cta_click', {
+            cta_id: ctaId, source: cur.source, medium: cur.medium, campaign: cur.campaign
+          });
+          if (isForm) {
+            window.gtag('event', 'form_open', {
+              cta_id: ctaId, source: cur.source, medium: cur.medium, campaign: cur.campaign
+            });
+          }
+        });
+      })(els[i]);
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireCTAs);
+  } else {
+    wireCTAs();
+  }
+})();
 </script>
 
 </head>
@@ -236,7 +383,7 @@
         <h1 style="writing-mode:vertical-rl; white-space:nowrap; margin:0; font-family:'Shippori Mincho B1',serif; font-weight:800; font-size:clamp(40px,12vw,52px); line-height:1.18; letter-spacing:.05em; color:#f3f2ec; text-shadow:0 2px 30px rgba(0,0,0,.88); animation:rgbShift 5.5s infinite;">ブックカフェ<br>からの脱出</h1>
         <div style="margin-top:22px; font-family:'Shippori Mincho B1',serif; font-weight:500; font-size:14px; letter-spacing:.16em; color:#c6d2e5; text-align:center;">― 異世界カフェから出られない件 ―</div>
         <p style="margin:14px 0 0; color:#e6ebf4; font-size:13px; line-height:1.75; text-align:center;">宮城・多賀城の実在するブックカフェで、<br>本棚と匿名掲示板の違和感を追うルーム型謎解き。</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="margin-top:28px; display:flex; align-items:center; justify-content:center; width:100%; padding:17px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:16px; letter-spacing:.05em; text-decoration:none; border-radius:2px; animation:pulseGlow 2.6s ease-in-out infinite;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
+        <a data-cta="hero" href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="margin-top:28px; display:flex; align-items:center; justify-content:center; width:100%; padding:17px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:16px; letter-spacing:.05em; text-decoration:none; border-radius:2px; animation:pulseGlow 2.6s ease-in-out infinite;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
       </div>
     </section>
     
@@ -288,7 +435,7 @@
         <div style="border:1px solid #2a3346; background:#0c1322; padding:12px;"><span style="display:flex; align-items:center; gap:6px; font-family:'DotGothic16',monospace; font-size:10px; color:#ff7a48; letter-spacing:.12em; margin-bottom:7px;"><span class="pico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff7a48" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 8.5l3 3 3-3M12 11.5V16M9.5 13h5M9.5 14.6h5"/></svg></span>PRICE</span><span style="font-size:13px; color:#e6ebf4; line-height:1.55;">1名1,500円<br>完全予約制</span></div>
       </div>
 
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="margin-top:20px; display:flex; align-items:center; justify-content:center; width:100%; padding:15px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:15px; letter-spacing:.05em; text-decoration:none; border-radius:2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
+      <a data-cta="intro" href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="margin-top:20px; display:flex; align-items:center; justify-content:center; width:100%; padding:15px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:15px; letter-spacing:.05em; text-decoration:none; border-radius:2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
       </div>
     </section>
 
@@ -587,7 +734,7 @@
         <div style="display:flex; align-items:baseline; gap:6px;"><span style="font-family:'DotGothic16',monospace; font-size:42px; color:#ff5a1f; line-height:1;">1,200</span><span style="font-size:15px; color:#c3cee0;">円</span></div>
         <div style="margin-top:8px; font-size:12px; color:#9fb4d6;">※ご予約時にあわせてお申し込みください</div>
       </div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="margin-top:18px; display:flex; align-items:center; justify-content:center; width:100%; padding:17px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:16px; letter-spacing:.05em; text-decoration:none; border-radius:2px; box-shadow:0 0 26px rgba(255,90,31,.34);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
+      <a data-cta="price" href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="margin-top:18px; display:flex; align-items:center; justify-content:center; width:100%; padding:17px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:16px; letter-spacing:.05em; text-decoration:none; border-radius:2px; box-shadow:0 0 26px rgba(255,90,31,.34);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
       <div style="margin-top:9px; text-align:center; font-size:11px; line-height:1.6; color:#9fb4d6;">完全予約制 / 1公演最大4名 / 1名1,500円 / 約60〜90分</div>
     </section>
 
@@ -626,11 +773,11 @@
         <div style="font-family:'DotGothic16',monospace; font-size:11px; letter-spacing:.34em; color:#ff7a48; margin-bottom:10px;">RESERVATION</div>
         <h2 style="margin:0 0 10px; font-family:'Shippori Mincho B1',serif; font-weight:800; font-size:clamp(26px,8vw,34px); color:#f3f2ec; letter-spacing:.04em; line-height:1.3;">扉を開ける準備は<br>できているか？</h2>
         <p style="margin:0 0 28px; font-size:13px; line-height:1.8; color:#c3cee0;">ご予約は予約フォーム・InstagramのDM・お電話にて受付中。<br>定員に達し次第、各公演は締め切ります。</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; width:100%; padding:20px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:18px; letter-spacing:.08em; text-decoration:none; border-radius:2px; box-shadow:0 0 30px rgba(255,90,31,.45); animation:pulseGlow 2.6s ease-in-out infinite;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
+        <a data-cta="bottom" href="https://docs.google.com/forms/d/e/1FAIpQLSdIkxqX2XbYLUMMcv-RIiqYILNnGcjQI4NWPJXrWDtZTJqoJw/viewform" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; width:100%; padding:20px; background:#ff5a1f; color:#0a0a0a; font-weight:900; font-size:18px; letter-spacing:.08em; text-decoration:none; border-radius:2px; box-shadow:0 0 30px rgba(255,90,31,.45); animation:pulseGlow 2.6s ease-in-out infinite;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; margin-right:9px;"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="m9.5 15.5 2 2 3.5-3.5"/></svg>空き日程を見て予約する</a>
         <div style="margin-top:9px; text-align:center; font-size:11px; line-height:1.6; color:#9fb4d6;">完全予約制 / 1公演最大4名 / 1名1,500円 / 約60〜90分</div>
         <div style="display:flex; gap:10px; margin-top:12px;">
-          <a href="https://www.instagram.com/bookcafe_safari/" target="_blank" rel="noopener" style="flex:1; padding:14px; border:1px solid #ff5a1f; color:#ff9a6a; font-weight:700; font-size:14px; text-decoration:none; border-radius:2px; text-align:center;">✉ InstagramのDMで予約</a>
-          <a href="tel:09066269472" style="flex:1; padding:14px; border:1px solid #ff5a1f; color:#ff9a6a; font-weight:700; font-size:14px; text-decoration:none; border-radius:2px; text-align:center;">☎ 電話で予約</a>
+          <a data-cta="dm" href="https://www.instagram.com/bookcafe_safari/" target="_blank" rel="noopener" style="flex:1; padding:14px; border:1px solid #ff5a1f; color:#ff9a6a; font-weight:700; font-size:14px; text-decoration:none; border-radius:2px; text-align:center;">✉ InstagramのDMで予約</a>
+          <a data-cta="tel" href="tel:09066269472" style="flex:1; padding:14px; border:1px solid #ff5a1f; color:#ff9a6a; font-weight:700; font-size:14px; text-decoration:none; border-radius:2px; text-align:center;">☎ 電話で予約</a>
         </div>
       </div>
     </section>

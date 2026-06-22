@@ -4,8 +4,8 @@
 
 ## 公開URL
 
-- ハブ: https://invitation.escape-safari.com/
-- ブックカフェからの脱出: https://invitation.escape-safari.com/bookcafe/
+- ハブ: https://invite.escape-safari.com/
+- ブックカフェからの脱出: https://invite.escape-safari.com/bookcafe/
 
 ## 構成の規約
 
@@ -31,4 +31,4 @@ akashic-lp/
 ## Pages 設定
 
 ブランチ `main` / パス `/`（root）から配信。
-カスタムドメインは `CNAME` ファイルで `invitation.escape-safari.com` に設定している。
+カスタムドメインは `CNAME` ファイルで `invite.escape-safari.com` に設定している。
