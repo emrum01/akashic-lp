@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lp.escape-safari.com/sitemap.xml
+Sitemap: https://invitation.escape-safari.com/sitemap.xml
