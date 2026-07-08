@@ -578,35 +578,40 @@ var SAFARI_TRACK = {
       </ul>
     </div>
 
-    <div class="lp-thread-ui" style="background:#fff; color:#000; overflow:hidden; box-shadow:0 18px 50px rgba(0,0,0,.42); font-family:'Zen Kaku Gothic New',system-ui,sans-serif;">
+    <div class="lp-thread-ui" style="background:#0e1a26; color:#e6dfd1; overflow:hidden; box-shadow:0 18px 50px rgba(0,0,0,.42); font-family:'Zen Kaku Gothic New',system-ui,sans-serif;">
+      <!-- オカルト板ダークテーマ（案4a）: 濃紺 #0e1a26 × オレンジ #ff5a1f × 生成り #e6dfd1 × 緑 #6abf69。
+           名前欄は一律緑（自分はオレンジ）、レス番緑、ID沈め色、投稿ボタンはオレンジ。 -->
       <style>
-        .lp-thread-ui{border:1px solid #ccc; font-size:14px;}
-        .lp-thread-badge{display:inline-flex; align-items:center; height:16px; padding:0 6px; border-radius:999px; color:#fff; font-size:12px; font-weight:700; line-height:1; flex-shrink:0;}
-        .lp-thread-post{border-bottom:1px solid #ccc; padding:12px; font-size:14px; background:#fff;}
-        .lp-thread-post.is-own{background:#f0f8ff;}
+        .lp-thread-ui{border:1px solid rgba(236,229,216,.09); font-size:14px;}
+        .lp-thread-badge{display:inline-flex; align-items:center; color:#6abf69; font-size:12px; font-weight:700; line-height:1; flex-shrink:0;}
+        .lp-thread-post{border-bottom:1px solid rgba(236,229,216,.09); padding:12px; font-size:14px;}
+        .lp-thread-post.is-own{background:rgba(255,90,31,.08); border-left:2px solid #ff5a1f;}
+        .lp-thread-post.is-own .lp-thread-badge{color:#ff8a5c;}
+        .lp-thread-post.is-own .lp-thread-body{color:#f2ecdf;}
         .lp-thread-meta{display:flex; align-items:flex-start; gap:8px; margin-bottom:8px;}
-        .lp-thread-no{color:#008000; flex-shrink:0; font-size:12px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-        .lp-thread-date,.lp-thread-id{color:#888; font-size:12px;}
-        .lp-thread-body{padding-left:24px; white-space:pre-wrap; overflow-wrap:anywhere; color:#000; line-height:1.6; font-size:14px;}
-        .lp-thread-id{text-align:right; margin-top:4px;}
-        .lp-thread-composer{display:flex; gap:10px; padding:12px; border-top:1px solid #e0e0e0; background:#fff; align-items:flex-end;}
-        .lp-thread-input{width:100%; min-height:46px; resize:vertical; border:0; background:#f7f9f9; color:#000; padding:11px 12px; font:500 16px/1.5 'Zen Kaku Gothic New',system-ui,sans-serif; outline:none;}
-        .lp-thread-submit{border:0; border-radius:999px; background:#1d9bf0; color:#fff; font-weight:700; font-size:14px; padding:8px 18px; cursor:pointer; white-space:nowrap;}
+        .lp-thread-no{color:#6abf69; flex-shrink:0; font-size:12px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+        .lp-thread-date{color:#66788a; font-size:12px;}
+        .lp-thread-id{color:#4d5d6d; font-size:12px; text-align:right; margin-top:4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+        .lp-thread-body{padding-left:24px; white-space:pre-wrap; overflow-wrap:anywhere; color:#e6dfd1; line-height:1.6; font-size:14px;}
+        .lp-thread-composer{display:flex; gap:10px; padding:12px; border-top:1px solid rgba(255,90,31,.35); background:#0a141e; align-items:flex-end;}
+        .lp-thread-input{width:100%; min-height:46px; resize:vertical; border:1px solid rgba(236,229,216,.09); border-radius:8px; background:#0e1a26; color:#f2ecdf; padding:11px 12px; font:500 16px/1.5 'Zen Kaku Gothic New',system-ui,sans-serif; outline:none;}
+        .lp-thread-input::placeholder{color:#66788a;}
+        .lp-thread-submit{border:0; border-radius:999px; background:#ff5a1f; color:#fff; font-weight:700; font-size:14px; padding:8px 18px; cursor:pointer; white-space:nowrap;}
         .lp-thread-submit:active{transform:scale(.98);}
       </style>
-      <div data-oka-posts style="max-height:188px; overflow:auto; background:#fff;">
+      <div data-oka-posts style="max-height:188px; overflow:auto; background:#0e1a26;">
         <div data-oka-post data-post-id="lp-oka-1" class="lp-thread-post">
-          <div class="lp-thread-meta"><span class="lp-thread-no">1</span><div style="flex:1; min-width:0;"><span class="lp-thread-badge" style="background:#ff6b6b;">名無しさん＠お腹いっぱい。</span> <span class="lp-thread-date">20:35:22</span></div></div>
+          <div class="lp-thread-meta"><span class="lp-thread-no">1</span><div style="flex:1; min-width:0;"><span class="lp-thread-badge">名無しさん＠お腹いっぱい。</span> <span class="lp-thread-date">20:35:22</span></div></div>
           <div class="lp-thread-body">釣りスレ乙</div>
           <div class="lp-thread-id">ID:y1Rz1efg</div>
         </div>
         <div data-oka-post data-post-id="lp-oka-2" class="lp-thread-post is-own">
-          <div class="lp-thread-meta"><span class="lp-thread-no">2</span><div style="flex:1; min-width:0;"><span class="lp-thread-badge" style="background:#4ecdc4;">あなた</span> <span class="lp-thread-date">20:35:24</span></div></div>
+          <div class="lp-thread-meta"><span class="lp-thread-no">2</span><div style="flex:1; min-width:0;"><span class="lp-thread-badge">あなた</span> <span class="lp-thread-date">20:35:24</span></div></div>
           <div class="lp-thread-body">今ブックカフェに入った！</div>
           <div class="lp-thread-id">ID:3FgH2ImN</div>
         </div>
         <div data-oka-post data-post-id="lp-oka-3" class="lp-thread-post">
-          <div class="lp-thread-meta"><span class="lp-thread-no">3</span><div style="flex:1; min-width:0;"><span class="lp-thread-badge" style="background:#6c5ce7;">名無しさん＠お腹いっぱい。</span> <span class="lp-thread-date">20:35:26</span></div></div>
+          <div class="lp-thread-meta"><span class="lp-thread-no">3</span><div style="flex:1; min-width:0;"><span class="lp-thread-badge">名無しさん＠お腹いっぱい。</span> <span class="lp-thread-date">20:35:26</span></div></div>
           <div class="lp-thread-body">ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!! 実況頼むｗｗｗ</div>
           <div class="lp-thread-id">ID:LpQ1aXo9</div>
         </div>
@@ -891,7 +896,7 @@ var SAFARI_TRACK = {
     item.setAttribute('data-oka-post','');
     item.className='lp-thread-post is-own';
     item.setAttribute('data-post-id','lp-oka-user-'+Date.now());
-    item.innerHTML='<div class="lp-thread-meta"><span class="lp-thread-no">'+no+'</span><div style="min-width:0; flex:1;"><span class="lp-thread-badge" style="background:#4ecdc4;">あなた</span> <span class="lp-thread-date">'+formatDate(new Date())+'</span></div></div><div class="lp-thread-body">'+escapeHtml(text)+'</div><div class="lp-thread-id">'+randomId()+'</div>';
+    item.innerHTML='<div class="lp-thread-meta"><span class="lp-thread-no">'+no+'</span><div style="min-width:0; flex:1;"><span class="lp-thread-badge">あなた</span> <span class="lp-thread-date">'+formatDate(new Date())+'</span></div></div><div class="lp-thread-body">'+escapeHtml(text)+'</div><div class="lp-thread-id">'+randomId()+'</div>';
     list.appendChild(item);
     input.value='';
     list.scrollTop=list.scrollHeight;
