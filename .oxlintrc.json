@@ -1,0 +1,8 @@
+{
+  "$schema": "../../tools/code-quality/node_modules/oxlint/configuration_schema.json",
+  "extends": ["../../.oxlintrc.json"],
+  "env": {
+    "browser": true,
+    "node": false
+  }
+}
